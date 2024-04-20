@@ -1,0 +1,15 @@
+.ScoreBoard{
+    border: 2px solid darkturquoise;
+    padding: 50px 250px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    font-size: 120px;
+    font-weight: 600;
+    color: darkturquoise;
+}
+.MaxScore{
+    color: darkred;
+}
+.Score{
+    color: darkturquoise;
+}

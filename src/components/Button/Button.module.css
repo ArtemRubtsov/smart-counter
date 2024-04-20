@@ -1,0 +1,10 @@
+
+.Button{
+    background-color: darkturquoise;
+    color: rgb(49, 32, 27);
+    padding: 15px 50px;
+    border-radius: 5px;
+    font-size: 36px;
+    margin: 10px;
+    font-weight: 600;
+}

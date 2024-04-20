@@ -1,0 +1,14 @@
+.ButtonContainer{
+    border: 2px solid darkturquoise;
+    padding: 50px 50px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.ButtonDisabled{
+    border: none;
+    opacity: 0.5;
+    outline: none;
+    pointer-events: none;
+}
+
