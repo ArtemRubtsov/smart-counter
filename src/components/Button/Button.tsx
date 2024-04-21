@@ -3,10 +3,10 @@ import styles from './Button.module.css'
 type ButtonPropsType = {
     title: string;
     callback: () => void;
-    count?: number;
+    validInputSet?: () => boolean;
 }
 
-export const Button = ({title, callback, count}: ButtonPropsType) => {
+export const Button = ({title, callback, validInputSet}: ButtonPropsType) => {
 
     const onClickHandler = () => {
         callback() 
@@ -15,9 +15,9 @@ export const Button = ({title, callback, count}: ButtonPropsType) => {
   return (
     <div className={styles.ButtonContainer}>   
         <div>
-        <button onClick={onClickHandler} className={styles.Button} >
+        <button onClick={onClickHandler} className={styles.Button} disabled={validInputSet ? validInputSet() : false} >
             {title}
-        </button> 
+        </button>
         </div>
     </div>
   )

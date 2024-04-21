@@ -30,3 +30,17 @@
     font-weight: 500;
     display: block;
 }
+.inputError{
+    /*border: none;*/
+    background-color: red;
+    opacity: 0.5;
+    outline: none;
+    /*pointer-events: none;*/
+    padding: 20px 60px;
+    color: black;
+    border-radius: 5px;
+    border: 2px solid darkturquoise;
+    margin: 15px;
+    width: 50%;
+}
+

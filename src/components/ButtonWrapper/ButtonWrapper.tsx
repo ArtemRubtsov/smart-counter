@@ -1,25 +1,23 @@
 import { Button } from '../Button/Button'
 import styles from './ButtonWrapper.module.css'
-import {useState} from "react";
 
 type ButtonWrapperType = {
   addCount: () => void;
   resetCount: () => void;
   isOpenSettings: () => void;
   count: number;
+  max: number;
+  score: number;
 }
 
-
-
-export const ButtonWrapper = ({addCount, resetCount,isOpenSettings, count}: ButtonWrapperType) => {
-
+export const ButtonWrapper = ({addCount, resetCount,isOpenSettings, count, max, score}: ButtonWrapperType) => {
 
   return (
     <div className={styles.ButtonContainer}>
-        <div className={count! < 5 ? styles.Button : styles.ButtonDisabled}>
-            <Button callback={addCount} count={count} title='inc'  />
+        <div className={score! < max ? styles.Button : styles.ButtonDisabled}>
+            <Button callback={addCount}  title='inc'  />
         </div>
-        <div className={count! !== 0 ? styles.Button : styles.ButtonDisabled}>
+        <div className={score! !== count ? styles.Button : styles.ButtonDisabled}>
             <Button callback={resetCount} title='reset'/>
         </div>
         <div>
