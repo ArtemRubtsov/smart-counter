@@ -1,30 +1,44 @@
 import { Button } from '../Button/Button'
 import styles from './Settings.module.css'
+import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {AppRootStateType} from "../../store/store";
+import {changeMaxCount, CounterType} from "../../store/features/counterReducer";
 
 type SettingsPropsType = {
     isOpenSettings: () => void;
     setValues: (start: number, max: number) => void;
     count: number;
-    setCount: (count: number) => void;
+    // setCount: (count: number) => void;
     max: number;
-    setMax: (max: number) => void;
+    // setMax: (max: number) => void;
     score: number
 }
 
-export const Settings = ({isOpenSettings, setValues, count, max, setMax, setCount, score}: SettingsPropsType) => {
+export const Settings = ({isOpenSettings, setValues, count, max,score}: SettingsPropsType) => {
+    const [err, setErr] = useState<string>('')
+    const counter = useSelector<AppRootStateType, CounterType>( state => state.counter)
+    const dispatch = useDispatch()
     function onStartCountHandler() {
         // setValues(count, max);
         isOpenSettings();
     }
 
+
     function onMaxCountHandler(event: React.ChangeEvent<HTMLInputElement>){
         const newMaxCount = parseInt(event.target.value);
-        setMax(newMaxCount);
+        // setMax(newMaxCount);
+        dispatch(changeMaxCount(newMaxCount))
+        if(newMaxCount < count){
+            setErr('Please enter a valid value')
+        }
     }
 
     function onStartValueHandler(event: React.ChangeEvent<HTMLInputElement>){
         const newStartValue = parseInt(event.target.value);
-        setCount(newStartValue);
+
+        // setCount(newStartValue);
+
     }
     function validInputSet(){
         if(max < count) {
@@ -34,7 +48,6 @@ export const Settings = ({isOpenSettings, setValues, count, max, setMax, setCoun
         }else{
             return false
         }
-
     }
 
     return (
@@ -45,9 +58,10 @@ export const Settings = ({isOpenSettings, setValues, count, max, setMax, setCoun
                     <input value={max}
                            min={0}
                            onChange={onMaxCountHandler}
-                           className={max < count ? styles.inputError  : styles.SettingsDisplay}
+                           className={count >= max ? styles.inputError : styles.SettingsDisplay}
                            type="number"
                     />
+                    <span className={styles.err}>{max <= count ? err : ''}</span>
                 </div>
 
                 <div className={styles.SettingsDisplayWrapper}>
@@ -57,6 +71,7 @@ export const Settings = ({isOpenSettings, setValues, count, max, setMax, setCoun
                             onChange={onStartValueHandler}
                             className={count < max ? styles.SettingsDisplay : styles.inputError}
                             type="number"/>
+                        <span className={styles.err}>{count <= max ? '' : err}</span>
                 </div>
 
             </div>

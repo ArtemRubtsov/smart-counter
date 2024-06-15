@@ -33,7 +33,7 @@
 .inputError{
     /*border: none;*/
     background-color: red;
-    opacity: 0.5;
+    /*opacity: 0.5;*/
     outline: none;
     /*pointer-events: none;*/
     padding: 20px 60px;
@@ -43,4 +43,15 @@
     margin: 15px;
     width: 50%;
 }
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    /*-webkit-appearance: none;*/
+
+}
+
+.err{
+    color: red;
+    font-size: 18px;
+}
+
 
