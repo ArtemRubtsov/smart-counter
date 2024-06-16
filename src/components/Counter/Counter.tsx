@@ -15,36 +15,22 @@ import {
 
 
 export const Counter = () => {
-  // const storedData = localStorage.getItem("counterData");
-  // const initialData = storedData ? JSON.parse(storedData) : { count: 0, max: 1, isOpen: true };
-  // const [count, setCount] = useState<number>(initialData.count);
-  // const [score, setScore] = useState<number>(count);
-  // const [max, setMax] = useState<number>(initialData.max);
-  // const [isOpen, setIsOpen] = useState<boolean>(true)
-
-  // useEffect(() => {
-  //   localStorage.setItem("counterData", JSON.stringify({ count, max, isOpen }));
-  // }, [count, max, isOpen]);
-  //   localStorage.setItem("counterData", JSON.stringify({ count, max, isOpen }));
   const counter = useSelector<AppRootStateType, CounterType>( state => state.counter)
   const dispatch = useDispatch()
   function setValues(start: number, max: number) {
-    // setCount(start);
-    // setMax(max);
   }
 
      function addCount() {
     if(counter.isOpen) {
-    // setScore(score + 1)
     dispatch(addScoreStore())
   }else
-      // setCount(count + 1)
     dispatch(addCountStore())
 }
 
   function resetCount() {
     // setScore(count)
-    dispatch(resetCountStore())
+    debugger
+    dispatch(resetCountStore(counter.count))
   }
 
   function isOpenSettings() {

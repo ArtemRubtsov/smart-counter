@@ -3,31 +3,26 @@ import styles from './Settings.module.css'
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
-import {changeMaxCount, CounterType} from "../../store/features/counterReducer";
+import {changeMaxCount, changeStartCount, CounterType} from "../../store/features/counterReducer";
 
 type SettingsPropsType = {
     isOpenSettings: () => void;
     setValues: (start: number, max: number) => void;
     count: number;
-    // setCount: (count: number) => void;
     max: number;
-    // setMax: (max: number) => void;
     score: number
 }
 
 export const Settings = ({isOpenSettings, setValues, count, max,score}: SettingsPropsType) => {
     const [err, setErr] = useState<string>('')
-    const counter = useSelector<AppRootStateType, CounterType>( state => state.counter)
     const dispatch = useDispatch()
     function onStartCountHandler() {
         // setValues(count, max);
         isOpenSettings();
     }
 
-
     function onMaxCountHandler(event: React.ChangeEvent<HTMLInputElement>){
         const newMaxCount = parseInt(event.target.value);
-        // setMax(newMaxCount);
         dispatch(changeMaxCount(newMaxCount))
         if(newMaxCount < count){
             setErr('Please enter a valid value')
@@ -36,7 +31,7 @@ export const Settings = ({isOpenSettings, setValues, count, max,score}: Settings
 
     function onStartValueHandler(event: React.ChangeEvent<HTMLInputElement>){
         const newStartValue = parseInt(event.target.value);
-
+        dispatch(changeStartCount(newStartValue))
         // setCount(newStartValue);
 
     }
