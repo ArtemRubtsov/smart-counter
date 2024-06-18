@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+  max-width: 1270px;
+  padding: 0 15px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 800px;
+}
+
+
+
