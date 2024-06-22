@@ -5,7 +5,7 @@ import { useState } from "react"
 import { Settings } from "../Settings/Settings";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../store/store";
-import {ScoreStateType} from "../../store/features/scoreReducer";
+import {addScoreStore, ScoreStateType} from "../../store/features/scoreReducer";
 
 export const Counter = () => {
   // const storedData = localStorage.getItem("counterData");
@@ -16,9 +16,9 @@ export const Counter = () => {
   // const [start, setStart] = useState<number>(0)
   //
   // localStorage.setItem("counterData", JSON.stringify({ score, max, isOpen }));
-  localStorage.setItem('score', JSON.stringify(1))
-  localStorage.setItem('start', JSON.stringify(1))
-  localStorage.setItem('max', JSON.stringify(1))
+  localStorage.setItem('score', JSON.stringify(5))
+  localStorage.setItem('start', JSON.stringify(0))
+  localStorage.setItem('max', JSON.stringify(0))
   localStorage.setItem('isOpen', JSON.stringify(false))
 
   const dataStore = useSelector<AppRootStateType, ScoreStateType>(state => state.data)
@@ -26,6 +26,7 @@ export const Counter = () => {
 
   function addCount() {
       // setScore(score + 1)
+      dispatch(addScoreStore())
   }
 
   function resetCount() {
