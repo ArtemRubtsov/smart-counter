@@ -2,18 +2,18 @@ import { Button } from '../Button/Button'
 import styles from './Settings.module.css'
 
 type SettingsPropsType = {
+    start: number;
+    setStart: (start: number) => void;
     isOpenSettings: () => void;
-    setValues: (start: number, max: number) => void;
-    count: number;
-    setCount: (count: number) => void;
     max: number;
     setMax: (max: number) => void;
-    score: number
+    score: number;
+    setScore: (start: number) => void
+    isOpen: boolean;
 }
 
-export const Settings = ({isOpenSettings, setValues, count, max, setMax, setCount, score}: SettingsPropsType) => {
+export const Settings = ({isOpenSettings, setScore, max, setMax, setStart, score, start, isOpen}: SettingsPropsType) => {
     function onStartCountHandler() {
-        // setValues(count, max);
         isOpenSettings();
     }
 
@@ -24,19 +24,21 @@ export const Settings = ({isOpenSettings, setValues, count, max, setMax, setCoun
 
     function onStartValueHandler(event: React.ChangeEvent<HTMLInputElement>){
         const newStartValue = parseInt(event.target.value);
-        setCount(newStartValue);
+        setStart(newStartValue)
     }
     function validInputSet(){
-        if(max < count) {
+        if(max < start) {
             return true
-        }else if(count >= max){
+        }else if(start >= max){
             return true
         }else{
             return false
         }
 
     }
+    const onValueHandler = () => setScore(start)
 
+    // @ts-ignore
     return (
         <div>
             <div className={styles.Settings}>
@@ -45,24 +47,23 @@ export const Settings = ({isOpenSettings, setValues, count, max, setMax, setCoun
                     <input value={max}
                            min={0}
                            onChange={onMaxCountHandler}
-                           className={max < count ? styles.inputError  : styles.SettingsDisplay}
+                           className={max <= start ? styles.inputError  : styles.SettingsDisplay}
                            type="number"
                     />
                 </div>
 
                 <div className={styles.SettingsDisplayWrapper}>
                     <span className={styles.spanValue}>Start value:</span>
-                    <input  value={count}
+                    <input  value={start}
                             min={0}
                             onChange={onStartValueHandler}
-                            className={count < max ? styles.SettingsDisplay : styles.inputError}
+                            className={start < max ? styles.SettingsDisplay : styles.inputError}
                             type="number"/>
                 </div>
 
             </div>
-            <div >
-                <Button title={'set'} callback={onStartCountHandler} validInputSet={validInputSet}/>
-                {/*<button disabled={validInput()}>disabled</button>*/}
+            <div>
+                <Button title={'set'} callback={onStartCountHandler} validInputSet={validInputSet} setScoreValue={onValueHandler}/>
             </div>
 
         </div>

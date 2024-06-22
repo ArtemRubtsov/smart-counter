@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import './App.css'
 import { Counter } from './components/Counter/Counter';
 

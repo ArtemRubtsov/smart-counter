@@ -4,12 +4,14 @@ type ButtonPropsType = {
     title: string;
     callback: () => void;
     validInputSet?: () => boolean;
+    setScoreValue?: () => void;
 }
 
-export const Button = ({title, callback, validInputSet}: ButtonPropsType) => {
+export const Button = ({title, callback, validInputSet, setScoreValue}: ButtonPropsType) => {
 
     const onClickHandler = () => {
-        callback() 
+        callback()
+        setScoreValue?.()
     }
 
   return (

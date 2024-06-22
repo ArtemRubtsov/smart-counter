@@ -5,25 +5,24 @@ type ButtonWrapperType = {
   addCount: () => void;
   resetCount: () => void;
   isOpenSettings: () => void;
-  count: number;
+  start: number;
   max: number;
   score: number;
 }
 
-export const ButtonWrapper = ({addCount, resetCount,isOpenSettings, count, max, score}: ButtonWrapperType) => {
+export const ButtonWrapper = ({addCount, resetCount,isOpenSettings, start, max, score}: ButtonWrapperType) => {
 
   return (
     <div className={styles.ButtonContainer}>
         <div className={score! < max ? styles.Button : styles.ButtonDisabled}>
             <Button callback={addCount}  title='inc'  />
         </div>
-        <div className={score! !== count ? styles.Button : styles.ButtonDisabled}>
+        <div className={score !== start ? styles.Button : styles.ButtonDisabled}>
             <Button callback={resetCount} title='reset'/>
         </div>
         <div>
-            <Button callback={isOpenSettings} title='set'/>
+            <Button callback={isOpenSettings} title='set' />
         </div>
-
     </div>
   )
 }

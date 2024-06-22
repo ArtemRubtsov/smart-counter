@@ -3,13 +3,12 @@ import styles from './ScoreBoard.module.css'
 
 
 type ScoreBoardType = {
-  count: number;
   max: number;
   score: number
 }
 
 
-export const ScoreBoard = ({count, max, score}: ScoreBoardType) => {
+export const ScoreBoard = ({ max, score}: ScoreBoardType) => {
 
   return (
     <div className={styles.ScoreBoard}>
