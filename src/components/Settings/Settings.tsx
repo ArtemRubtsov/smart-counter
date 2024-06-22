@@ -1,30 +1,32 @@
 import { Button } from '../Button/Button'
 import styles from './Settings.module.css'
+import {useDispatch} from "react-redux";
+import {maxSetScore, openCloseSettings, setSettings, startSetScore} from "../../store/features/scoreReducer";
 
 type SettingsPropsType = {
     start: number;
-    // setStart: (start: number) => void;
     isOpenSettings: () => void;
     max: number;
-    // setMax: (max: number) => void;
     score: number;
-    // setScore: (start: number) => void
     isOpen: boolean;
 }
 
 export const Settings = ({isOpenSettings, max, score, start, isOpen}: SettingsPropsType) => {
+    const dispatch = useDispatch()
     function onStartCountHandler() {
-        isOpenSettings();
+        // isOpenSettings();
+        dispatch(setSettings())
+        dispatch(openCloseSettings())
     }
 
     function onMaxCountHandler(event: React.ChangeEvent<HTMLInputElement>){
-        const newMaxCount = parseInt(event.target.value);
-        // setMax(newMaxCount);
+        const newMaxScore = parseInt(event.target.value);
+        dispatch(maxSetScore(newMaxScore))
     }
 
     function onStartValueHandler(event: React.ChangeEvent<HTMLInputElement>){
         const newStartValue = parseInt(event.target.value);
-        // setStart(newStartValue)
+        dispatch(startSetScore(newStartValue))
     }
     function validInputSet(){
         if(max < start) {
@@ -40,7 +42,7 @@ export const Settings = ({isOpenSettings, max, score, start, isOpen}: SettingsPr
         // setScore(start)
     }
 
-    // @ts-ignore
+
     return (
         <div>
             <div className={styles.Settings}>
