@@ -3,28 +3,28 @@ import styles from './Settings.module.css'
 
 type SettingsPropsType = {
     start: number;
-    setStart: (start: number) => void;
+    // setStart: (start: number) => void;
     isOpenSettings: () => void;
     max: number;
-    setMax: (max: number) => void;
+    // setMax: (max: number) => void;
     score: number;
-    setScore: (start: number) => void
+    // setScore: (start: number) => void
     isOpen: boolean;
 }
 
-export const Settings = ({isOpenSettings, setScore, max, setMax, setStart, score, start, isOpen}: SettingsPropsType) => {
+export const Settings = ({isOpenSettings, max, score, start, isOpen}: SettingsPropsType) => {
     function onStartCountHandler() {
         isOpenSettings();
     }
 
     function onMaxCountHandler(event: React.ChangeEvent<HTMLInputElement>){
         const newMaxCount = parseInt(event.target.value);
-        setMax(newMaxCount);
+        // setMax(newMaxCount);
     }
 
     function onStartValueHandler(event: React.ChangeEvent<HTMLInputElement>){
         const newStartValue = parseInt(event.target.value);
-        setStart(newStartValue)
+        // setStart(newStartValue)
     }
     function validInputSet(){
         if(max < start) {
@@ -36,7 +36,9 @@ export const Settings = ({isOpenSettings, setScore, max, setMax, setStart, score
         }
 
     }
-    const onValueHandler = () => setScore(start)
+    const onValueHandler = () => {
+        // setScore(start)
+    }
 
     // @ts-ignore
     return (
