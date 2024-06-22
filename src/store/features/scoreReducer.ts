@@ -1,5 +1,5 @@
 const initialState = {
-    score: Number(localStorage.getItem('score')) || 0,
+    score: Number(localStorage.getItem('score')) || 3,
     start: Number(localStorage.getItem('start')) || 0,
     max: Number(localStorage.getItem('max')) || 0,
     isOpen: Boolean(localStorage.getItem('isOpen')) || false

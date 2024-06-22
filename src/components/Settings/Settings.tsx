@@ -5,16 +5,14 @@ import {maxSetScore, openCloseSettings, setSettings, startSetScore} from "../../
 
 type SettingsPropsType = {
     start: number;
-    isOpenSettings: () => void;
     max: number;
     score: number;
     isOpen: boolean;
 }
 
-export const Settings = ({isOpenSettings, max, score, start, isOpen}: SettingsPropsType) => {
+export const Settings = ({ max, start,}: SettingsPropsType) => {
     const dispatch = useDispatch()
     function onStartCountHandler() {
-        // isOpenSettings();
         dispatch(setSettings())
         dispatch(openCloseSettings())
     }
@@ -36,13 +34,7 @@ export const Settings = ({isOpenSettings, max, score, start, isOpen}: SettingsPr
         }else{
             return false
         }
-
     }
-    const onValueHandler = () => {
-        // setScore(start)
-    }
-
-
     return (
         <div>
             <div className={styles.Settings}>
@@ -67,7 +59,7 @@ export const Settings = ({isOpenSettings, max, score, start, isOpen}: SettingsPr
 
             </div>
             <div>
-                <Button title={'set'} callback={onStartCountHandler} validInputSet={validInputSet} setScoreValue={onValueHandler}/>
+                <Button title={'set'} callback={onStartCountHandler} validInputSet={validInputSet} />
             </div>
 
         </div>

@@ -7,13 +7,14 @@ import {AppRootStateType} from "../../store/store";
 import {addScoreStore, openCloseSettings, resetScoreStore, ScoreStateType} from "../../store/features/scoreReducer";
 
 export const Counter = () => {
-  localStorage.setItem('score', JSON.stringify(5))
-  localStorage.setItem('start', JSON.stringify(0))
-  localStorage.setItem('max', JSON.stringify(0))
-  localStorage.setItem('isOpen', JSON.stringify(false))
-
   const dataStore = useSelector<AppRootStateType, ScoreStateType>(state => state.data)
   const dispatch = useDispatch()
+
+  localStorage.setItem('score', JSON.stringify(dataStore.score))
+  localStorage.setItem('start', JSON.stringify(dataStore.start))
+  localStorage.setItem('max', JSON.stringify(dataStore.max))
+  localStorage.setItem('isOpen', JSON.stringify(dataStore.isOpen))
+
 
   function addCount() {
       dispatch(addScoreStore())
@@ -41,7 +42,7 @@ export const Counter = () => {
               />
             </>
         ) : (
-            <Settings isOpenSettings={isOpenSettings}
+            <Settings
                       isOpen={dataStore.isOpen}
                       start={dataStore.start}
                       max={dataStore.max}
